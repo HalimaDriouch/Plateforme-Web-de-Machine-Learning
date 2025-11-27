@@ -1,0 +1,91 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+
+        <h2 class="text-center mb-4">Résultat de la Prédiction</h2>
+
+        {% if initial_data and prediction %}
+            <!-- Cas : prédiction d'une seule personne -->
+            <div class="mb-4">
+                <h5 class="mb-3">Données fournies :</h5>
+                <ul class="list-group list-group-flush">
+                    {% for key, value in initial_data.items %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ key|capfirst }} :</strong>
+                            <span>{{ value }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="alert alert-success text-center py-4 mt-3">
+                <h4 class="mb-3">Statut Prédit</h4>
+
+                {% if prediction == 1 %}
+                    <span class="display-5 fw-bold text-success">✔ Personne Fit</span>
+                {% else %}
+                    <span class="display-5 fw-bold text-danger">✘ Personne Non Fit</span>
+                {% endif %}
+            </div>
+
+        {% elif predictions_batch %}
+            <!-- Cas : prédiction pour un CSV -->
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            {% for col in predictions_batch.0.keys %}
+                                <th>{{ col|capfirst }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {% for row in predictions_batch %}
+                            <tr>
+                                {% for value in row.values %}
+                                    <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bouton de téléchargement -->
+            <div class="text-center mb-3">
+                <form method="get" action="{% url 'xgb_download_csv' %}">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        Télécharger le fichier avec les prédictions
+                    </button>
+                </form>
+            </div>
+
+        {% else %}
+            <div class="alert alert-info text-center">
+                Aucune prédiction disponible pour le moment.
+            </div>
+        {% endif %}
+
+        <!-- Logo optionnel -->
+        <div class="text-center my-4">
+            <img src="{% static 'images/xgboost_logo.jpg' %}" alt="XGBoost Logo"
+                 class="img-fluid" style="max-width: 150px;">
+        </div>
+
+        <!-- Bouton nouvelle prédiction -->
+        <div class="text-center mb-4">
+            <a href="{% url 'xgb_tester' %}" class="btn btn-primary btn-lg px-4">
+                Faire une nouvelle prédiction
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+
+
+
