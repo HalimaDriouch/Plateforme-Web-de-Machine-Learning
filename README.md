@@ -3,22 +3,22 @@ Plateforme Web de Machine Learning
 Bienvenue dans la Plateforme Web de Machine Learning, une application web interactive permettant de charger des datasets, visualiser les données, entraîner des modèles de Machine Learning et effectuer des prédictions sans écrire une seule ligne de code.
 Cette plateforme offre une interface intuitive, moderne et adaptée aux étudiants pour comprendre et manipuler les algorithmes vus en cours.
 
-Encadrement Pédagogique
+## **Encadrement Pédagogique**
 
-| Élément                 | Détails |
+| **Élément **                | **Détails** |
 |--------------------------|---------|
-| Enseignant               | Professeur Mohammed AMEKSA |
-| Filière                  | IASD |
-| Semestre                 | 5ᵉ semestre |
-| Année universitaire      | 2025 / 2026 |
+| **Enseignant**               | Professeur Mohammed AMEKSA |
+| **Filière**                  | IASD |
+| **Semestre**                 | 5ᵉ semestre |
+| **Année universitaire**     | 2025 / 2026 |
 
 Auteurs
 
 | Nom complet             | Rôle     |
 |-------------------------|----------|
-| Abderrahim Aamirrou     | Étudiant |
-| Imane Chalati           | Étudiante |
-| Halima Driouch          | Étudiante |
+| **Abderrahim Aamirrou**     | Étudiant |
+| **Imane Chalati**           | Étudiante |
+| **Halima Driouch**          | Étudiante |
 
 
 Sujet du projet
