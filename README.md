@@ -31,8 +31,8 @@ Cette application s’inspire des cas pratiques du module, notamment avec les da
 
 | Nom du fichier | Lien | Description |
 |----------------|-------|-------------|
-| fitness_dataset.csv | [Télécharger](datasets/fitness_dataset.csv) | Dataset utilisé pour prédire Fit / Non Fit |
-| calories_pred.csv | [Télécharger](datasets/calories_pred.csv) | Dataset utilisé pour prédire les calories consommées |
+| fitness_dataset.csv | [Télécharger](datasets/classification/fitness_dataset.csv) | Dataset utilisé pour prédire Fit / Non Fit |
+| calories_pred.csv | [Télécharger](datasets/regression/calories_pred.csv) | Dataset utilisé pour prédire les calories consommées |
 
 
 ## **Fonctionnalités**
