@@ -5,16 +5,22 @@ Cette plateforme offre une interface intuitive, moderne et adaptée aux étudian
 
 Encadrement Pédagogique
 
-Enseignant : Professeur Mohammed AMEKSA
-Filière : IASD
-Semestre : 5ᵉ semestre
-Année universitaire : 2025 / 2026
+| Élément                 | Détails |
+|--------------------------|---------|
+| Enseignant               | Professeur Mohammed AMEKSA |
+| Filière                  | IASD |
+| Semestre                 | 5ᵉ semestre |
+| Année universitaire      | 2025 / 2026 |
 
 Auteurs
-Nom complet	Rôle
-Abderrahim Aamirrou	Étudiant
-Imane Chalati	Étudiante
-Halima Driouch	Étudiante
+
+| Nom complet             | Rôle     |
+|-------------------------|----------|
+| Abderrahim Aamirrou     | Étudiant |
+| Imane Chalati           | Étudiante |
+| Halima Driouch          | Étudiante |
+
+
 Sujet du projet
 
 Le projet consiste à développer une plateforme web qui permet :
