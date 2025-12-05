@@ -1,0 +1,508 @@
+{% include "includes/header.html" %} {% load static %}
+
+<div class="container py-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="display-6">
+        Atelier Pratique : <span class="text-primary">{{ nom_modele }}</span>
+      </h2>
+      <p class="lead">
+        Saisissez les paramètres ci-dessous pour lancer une prédiction en temps
+        réel.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card shadow border-0">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">Paramètres de simulation</h5>
+        </div>
+        <div class="card-body p-4">
+          <form method="POST">
+            {% csrf_token %}
+
+            <h6 class="text-muted border-bottom pb-2 mb-3">
+              Données Physiques
+            </h6>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Genre</label>
+                <select name="gender" class="form-select">
+                  <option value="1">Homme</option>
+                  <option value="0">Femme</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Age (ans)</label>
+                <input
+                  type="number"
+                  name="age"
+                  class="form-control"
+                  required
+                  placeholder="Ex: 25"
+                />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Taille (cm)</label>
+                <input
+                  type="number"
+                  name="height"
+                  class="form-control"
+                  required
+                  placeholder="Ex: 175"
+                />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Poids (kg)</label>
+                <input
+                  type="number"
+                  name="weight"
+                  class="form-control"
+                  required
+                  placeholder="Ex: 70"
+                />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Rythme Cardiaque (BPM)</label>
+                <input
+                  type="number"
+                  name="heart_rate"
+                  class="form-control"
+                  required
+                  placeholder="Ex: 80"
+                />
+              </div>
+            </div>
+
+            {% if type_pred == 'fitness' %}
+            <h6 class="text-muted border-bottom pb-2 mb-3">Habitudes de Vie</h6>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Heures de Sommeil</label>
+                <input
+                  type="number"
+                  step="0.5"
+                  name="sleep"
+                  class="form-control"
+                  value="7"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Qualité Nutrition (1-10)</label>
+                <input
+                  type="number"
+                  name="nutrition"
+                  class="form-control"
+                  value="5"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Niveau d'Activité (1-5)</label>
+                <input
+                  type="number"
+                  name="activity"
+                  class="form-control"
+                  value="3"
+                  min="1"
+                  max="5"
+                  step="0.1"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Fumeur ?</label>
+                <select name="smokes" class="form-select">
+                  <option value="0">Non</option>
+                  <option value="1">Oui</option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-success w-100 py-2 fw-bold mt-2"
+              >
+                LANCER LA PRÉDICTION
+              </button>
+            </div>
+            {% endif %} {% if type_pred == 'calories' %}
+            <h6 class="text-muted border-bottom pb-2 mb-3">
+              Détails de l'Exercice
+            </h6>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Durée (minutes)</label>
+                <input
+                  type="number"
+                  name="duration"
+                  class="form-control"
+                  required
+                  placeholder="Ex: 45"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Température Corporelle (°C)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  name="body_temp"
+                  class="form-control"
+                  required
+                  placeholder="Ex: 39.5"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-success w-100 py-2 fw-bold mt-2"
+            >
+              LANCER LA PRÉDICTION
+            </button>
+
+            <script>
+              // PDF Export Function
+              function exportResultPDF() {
+                const calories = parseFloat("{{ resultat }}");
+                const modelName = "{{ nom_modele }}";
+                const timestamp = new Date().toLocaleString("fr-FR");
+
+                // Using browser's print-to-PDF functionality
+                const printWindow = window.open("", "_blank");
+                printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Résultat - ${modelName}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 40px; }
+                    h1 { color: #333; }
+                    .result { font-size: 48px; color: #0066cc; font-weight: bold; margin: 20px 0; }
+                    .details { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+                    .param { margin: 10px 0; }
+                    .label { font-weight: bold; }
+                </style>
+            </head>
+            <body>
+                <h1>🔥 Résultat de Prédiction</h1>
+                <p><strong>Modèle:</strong> ${modelName}</p>
+                <p><strong>Date:</strong> ${timestamp}</p>
+                
+                <div class="result">${calories} kCal</div>
+                
+                <div class="details">
+                    <h3>Équivalences</h3>
+                    <p>🚶 Marche: ${Math.round(calories / 4)} minutes</p>
+                    <p>🏃 Course: ${Math.round(calories / 10)} minutes</p>
+                  
+                </div>
+                
+                <div class="details">
+                    <h3>Recommandations</h3>
+                    <p>💧 Hydratation: ${Math.round(calories / 2)} ml</p>
+                    <p>🍎 Protéines: ${Math.round(calories / 20)} g</p>
+                </div>
+
+                <p style="margin-top: 40px; color: #666; font-size: 12px;">
+                    Généré par ML Platform - Fitness & Health Analytics
+                </p>
+            </body>
+            </html>
+        `);
+                printWindow.document.close();
+                setTimeout(() => {
+                  printWindow.print();
+                }, 250);
+              }
+            </script>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow border-0 h-100">
+        <div class="card-header bg-secondary text-white">
+          <h5 class="mb-0">Résultat de l'analyse</h5>
+        </div>
+        <div
+          class="card-body d-flex flex-column justify-content-center align-items-center text-center"
+        >
+          {% if resultat %}
+          <div class="alert alert-info w-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h4 class="alert-heading mb-0">Prédiction</h4>
+              {% if type_pred == 'fitness' %}
+              <button
+                class="btn btn-sm btn-outline-secondary"
+                onclick="exportClassificationPDF()"
+              >
+                <i class="bi bi-download"></i> Exporter PDF
+              </button>
+              {% elif type_pred == 'calories' %}
+              <button
+                class="btn btn-sm btn-outline-secondary"
+                onclick="exportResultPDF()"
+              >
+                <i class="bi bi-download"></i> Exporter PDF
+              </button>
+              {% endif %}
+            </div>
+            <hr />
+            <p class="display-6 fw-bold mb-0">{{ resultat }}</p>
+          </div>
+
+          {% if type_pred == 'calories' %}
+          <div class="w-100">
+            <!-- Progress Bar (Daily Goal) -->
+            <div class="mt-3">
+              <div
+                class="d-flex justify-content-between align-items-center mb-1"
+              >
+                <small class="text-muted">Objectif Quotidien</small>
+                <small class="text-muted"
+                  ><span id="percentGoal"></span>% de
+                  <span id="dailyGoal">500</span> kCal</small
+                >
+              </div>
+              <div class="progress" style="height: 25px">
+                <div
+                  class="progress-bar bg-gradient"
+                  id="goalProgress"
+                  role="progressbar"
+                  style="width: 0%"
+                >
+                  <span id="goalProgressText"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Equivalent Comparisons -->
+            <div class="mt-4">
+              <h6 class="text-muted mb-3">📊 Équivalences</h6>
+              <div class="row g-2">
+                <div class="col-6">
+                  <div class="p-3 bg-light rounded text-center">
+                    <div class="fs-5">🚶</div>
+                    <div class="fw-bold" id="walkingTime">-- min</div>
+                    <small class="text-muted">Marche</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 bg-light rounded text-center">
+                    <div class="fs-5">🏃</div>
+                    <div class="fw-bold" id="runningTime">-- min</div>
+                    <small class="text-muted">Course</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            // Auto-execute when page loads with calorie result
+            (function () {
+              const resultText = "{{ resultat }}";
+              const typePredict = "{{ type_pred }}";
+
+              if (typePredict === "calories" && resultText) {
+                const calories = parseFloat(resultText.replace(/[^\d.]/g, ""));
+
+                if (!isNaN(calories)) {
+                  // Daily goal percentage - dynamic goal based on result
+                  const dailyGoal = Math.max(
+                    500,
+                    Math.ceil(calories / 100) * 100
+                  );
+                  const dailyGoalEl = document.getElementById("dailyGoal");
+                  if (dailyGoalEl) dailyGoalEl.textContent = dailyGoal;
+
+                  const percent = Math.min(
+                    (calories / dailyGoal) * 100,
+                    100
+                  ).toFixed(1);
+                  const percentGoalEl = document.getElementById("percentGoal");
+                  if (percentGoalEl) percentGoalEl.textContent = percent;
+
+                  const goalProgress = document.getElementById("goalProgress");
+                  if (goalProgress) {
+                    goalProgress.style.width = percent + "%";
+
+                    // Progress bar color
+                    if (percent < 25) {
+                      goalProgress.className = "progress-bar bg-success";
+                    } else if (percent < 50) {
+                      goalProgress.className = "progress-bar bg-info";
+                    } else if (percent < 75) {
+                      goalProgress.className = "progress-bar bg-warning";
+                    } else {
+                      goalProgress.className = "progress-bar bg-danger";
+                    }
+                  }
+
+                  const goalProgressText =
+                    document.getElementById("goalProgressText");
+                  if (goalProgressText)
+                    goalProgressText.textContent = calories + " kCal";
+
+                  // Calculate equivalents
+                  const walkMin = Math.round(calories / 4);
+                  const runMin = Math.round(calories / 10);
+
+                  const walkingTimeEl = document.getElementById("walkingTime");
+                  if (walkingTimeEl)
+                    walkingTimeEl.textContent = walkMin + " min";
+
+                  const runningTimeEl = document.getElementById("runningTime");
+                  if (runningTimeEl)
+                    runningTimeEl.textContent = runMin + " min";
+                }
+              }
+            })();
+          </script>
+          {% endif %} {% if confiance %}
+          <div class="w-100">
+            <!-- Score de certitude du modèle principal -->
+            <div class="mt-3 p-3 bg-light rounded">
+              <h6 class="text-muted mb-2">Score de Certitude du Modèle</h6>
+              <h3 class="text-primary mb-0">{{ confiance }}%</h3>
+              <span class="badge bg-{{ certitude_badge }} mt-2"
+                >Certitude: {{ certitude }}</span
+              >
+            </div>
+
+            <!-- Barre de progression -->
+            <div class="mt-3">
+              <small class="text-muted d-block mb-1">Niveau de certitude</small>
+              <div class="progress" style="height: 20px">
+                <div
+                  class="progress-bar bg-{{ certitude_badge }}"
+                  role="progressbar"
+                  style="width: {{ confiance }}%;"
+                  aria-valuenow="{{ confiance }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  {{ confiance }}%
+                </div>
+              </div>
+            </div>
+
+            <!-- Probabilités détaillées -->
+            {% if type_pred == 'fitness' %}
+            <div class="mt-4">
+              <h6 class="text-muted mb-3">Probabilités par Classe</h6>
+              <div class="row text-start">
+                <div class="col-6">
+                  <div class="p-2 border rounded">
+                    <small class="text-muted">💪 FIT</small>
+                    <div class="fw-bold text-success">{{ prob_fit }}%</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-2 border rounded">
+                    <small class="text-muted">⚠️ NOT FIT</small>
+                    <div class="fw-bold text-danger">{{ prob_not_fit }}%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          <script>
+            // PDF Export Function for Classification Results
+            function exportClassificationPDF() {
+              const prediction = "{{ resultat }}";
+              const confidence = "{{ confiance }}";
+              const certitude = "{{ certitude }}";
+              const probFit = "{{ prob_fit }}";
+              const probNotFit = "{{ prob_not_fit }}";
+              const modelName = "{{ nom_modele }}";
+              const timestamp = new Date().toLocaleString("fr-FR");
+
+              // Using browser's print-to-PDF functionality
+              const printWindow = window.open("", "_blank");
+              printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Résultat - ${modelName}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 40px; }
+                    h1 { color: #333; }
+                    .result { font-size: 48px; color: #0066cc; font-weight: bold; margin: 20px 0; }
+                    .details { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+                    .param { margin: 10px 0; }
+                    .label { font-weight: bold; }
+                    .confidence-box { background: #e7f3ff; padding: 15px; border-left: 4px solid #0066cc; margin: 20px 0; }
+                    .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+                    .prob-card { background: white; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+                    .prob-value { font-size: 24px; font-weight: bold; margin-top: 5px; }
+                    .fit { color: #28a745; }
+                    .not-fit { color: #dc3545; }
+                </style>
+            </head>
+            <body>
+                <h1>💪 Résultat de Prédiction - Classification</h1>
+                <p><strong>Modèle:</strong> ${modelName}</p>
+                <p><strong>Date:</strong> ${timestamp}</p>
+                
+                <div class="result">${prediction}</div>
+                
+                <div class="confidence-box">
+                    <h3>Score de Certitude du Modèle</h3>
+                    <p style="font-size: 32px; margin: 10px 0;"><strong>${confidence}%</strong></p>
+                    <p>Certitude: <strong>${certitude}</strong></p>
+                </div>
+                
+                <div class="details">
+                    <h3>Probabilités par Classe</h3>
+                    <div class="prob-grid">
+                        <div class="prob-card">
+                            <p style="color: #666; margin: 0;">💪 FIT</p>
+                            <div class="prob-value fit">${probFit}%</div>
+                        </div>
+                        <div class="prob-card">
+                            <p style="color: #666; margin: 0;">⚠️ NOT FIT</p>
+                            <div class="prob-value not-fit">${probNotFit}%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 40px; color: #666; font-size: 12px;">
+                    Généré par ML Platform - Fitness & Health Analytics
+                </p>
+            </body>
+            </html>
+        `);
+              printWindow.document.close();
+              setTimeout(() => {
+                printWindow.print();
+              }, 250);
+            }
+          </script>
+
+          {% elif erreur %}
+          <div class="alert alert-danger">
+            <strong>Erreur :</strong> {{ erreur }}
+          </div>
+          {% else %}
+          <img
+            src="{% static 'images/ai_waiting.png' %}"
+            class="img-fluid mb-3 opacity-50"
+            alt="Attente"
+          />
+          <p class="text-muted">
+            Remplissez le formulaire et cliquez sur "Lancer" pour voir le
+            résultat de l'IA ici.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "includes/footer.html" %}

@@ -1,0 +1,67 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h3 class="mb-0 fw-bold">Créer un compte FitAI</h3>
+                </div>
+                
+                <div class="card-body p-4 p-md-5">
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'signup' %}">
+                        {% csrf_token %}
+                        
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Pseudo" required>
+                            <label for="username">Nom d'utilisateur</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                            <label for="email">Adresse Email</label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+                                    <label for="password">Mot de passe</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirmer" required>
+                                    <label for="password_confirm">Confirmation</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" class="btn btn-warning btn-lg text-dark fw-bold">S'inscrire maintenant</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="card-footer text-center py-3 bg-light">
+                    <p class="mb-0">Déjà membre ? <a href="{% url 'login' %}" class="text-decoration-none fw-bold text-dark">Se connecter</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}

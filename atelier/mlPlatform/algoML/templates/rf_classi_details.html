@@ -1,0 +1,44 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-success">Random Forest (Classification)</h2>
+    <span class="badge bg-success text-white mb-4">Ensemble Learning - Classification</span>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4 h-100">
+                <h3 class="h4 mb-3">🔍 Qu'est-ce que c'est ?</h3>
+                <p>
+                    Le <strong>Random Forest</strong> (Forêt Aléatoire) fonctionne comme une démocratie : il crée une multitude d'Arbres de Décision lors de l'entraînement.
+                </p>
+                <p>
+                    Pour classer un profil (Fit ou Not Fit), chaque arbre donne son avis (vote). L'algorithme choisit ensuite la classe qui a reçu <strong>la majorité des votes</strong>. Cela permet de corriger les erreurs qu'un arbre seul pourrait faire.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 h-100 bg-light">
+                <h3 class="h4 mb-3">⚙️ Caractéristiques</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><strong>🌲 La Force du Nombre :</strong> Plus robuste et précis qu'un arbre unique.</li>
+                    <li class="mb-3"><strong>🛡️ Anti-Surapprentissage :</strong> Réduit le risque d'apprendre les données "par cœur".</li>
+                    <li class="mb-3"><strong>📊 Importance des Variables :</strong> Permet de savoir quel critère (Poids, Age...) compte le plus.</li>
+                    <li class="mb-3"><strong>Accuracy :</strong> 75.00%</li>
+                    <li class="mb-3"><strong>Precision :</strong> 74.43%</li>
+                    <li class="mb-3"><strong>F1_score :</strong> 0.66</li>
+                    <li class="mb-3"><strong>Recall :</strong> 0.60</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 border rounded p-3 bg-white shadow-sm">
+        <h4 class="mb-3 text-secondary">📚 Documentation Théorique</h4>
+        <iframe src="{% static 'pdfs/RF.pdf' %}" width="100%" height="600px" style="border:1px solid #eee;">
+            <div class="alert alert-warning">PDF non supporté. <a href="pdfs/RF.pdf">Télécharger ici.</a></div>
+        </iframe>
+    </div>
+</div>
+{% include "includes/footer.html" %}

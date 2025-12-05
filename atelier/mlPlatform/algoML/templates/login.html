@@ -1,0 +1,53 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-warning text-white text-center py-3">
+                    <h3 class="mb-0 fw-bold">Connexion</h3>
+                </div>
+                
+                <div class="card-body p-4 p-md-5">
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="loginUser" name="username" placeholder="Pseudo" required>
+                            <label for="loginUser">Nom d'utilisateur</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="loginPass" name="password" placeholder="Mot de passe" required>
+                            <label for="loginPass">Mot de passe</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold">Accéder à mon espace</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="card-footer text-center py-3 bg-light">
+                    <p class="mb-0">Pas encore de compte ? <a href="{% url 'signup' %}" class="text-decoration-none fw-bold text-warning">Créer un compte</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+{% include "includes/footer.html" %}

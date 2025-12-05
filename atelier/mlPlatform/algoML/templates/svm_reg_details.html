@@ -1,0 +1,46 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-danger">SVR (Support Vector Regression)</h2>
+    <span class="badge bg-danger text-white mb-4">Régression - Marge de Tolérance</span>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4 h-100">
+                <h3 class="h4 mb-3">🔍 Qu'est-ce que c'est ?</h3>
+                <p>
+                    Le <strong>SVR</strong> est l'adaptation du SVM pour la prédiction de valeurs continues (Calories). Contrairement à une régression classique qui cherche à minimiser l'erreur de chaque point, le SVR cherche à faire entrer le maximum de points à l'intérieur d'un <strong>"tube" de tolérance</strong> (marge ε).
+                </p>
+                <hr>
+                <h3 class="h4 mb-3">💡 L'Analogie Simple</h3>
+                <p class="text-muted">
+                    <em>L'autoroute :</em><br>
+                    Imaginez que la ligne de régression est le terre-plein central d'une autoroute. Le but du SVR est de construire une autoroute assez large pour contenir la plupart des voitures (points de données), tout en gardant la route la plus droite possible.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 h-100 bg-light">
+                <h3 class="h4 mb-3">⚙️ Caractéristiques</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><strong>🛡️ Robustesse :</strong> Ignore les petites erreurs tant qu'elles restent dans le "tube".</li>
+                    <li class="mb-3"><strong>🧮 Noyaux (Kernels) :</strong> Très puissant pour modéliser des courbes complexes (non-linéaires).</li>
+                    <li class="mb-3"><strong>⚙️ Paramètres :</strong> Nécessite un bon réglage de C (pénalité) et Epsilon (largeur du tube).</li>
+                    <li class="mb-3"><strong>MSE :</strong> 0.15 Calories</li>
+                    <li class="mb-3"><strong>MAE :</strong> 0.30 Calories</li>
+                    <li class="mb-3"><strong>R2 score :</strong> 0.9999</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 border rounded p-3 bg-white shadow-sm">
+        <h4 class="mb-3 text-secondary">📚 Documentation Théorique</h4>
+        <iframe src="{% static 'pdfs/chapitre_svm.pdf' %}" width="100%" height="600px" style="border:1px solid #eee;">
+            <div class="alert alert-warning">PDF non supporté. <a href="#">Télécharger ici.</a></div>
+        </iframe>
+    </div>
+</div>
+{% include "includes/footer.html" %}

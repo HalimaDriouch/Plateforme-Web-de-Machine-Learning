@@ -1,0 +1,68 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-info">Arbre de Décision (Régression)</h2>
+    <span class="badge bg-info text-white mb-4">Algorithme de Prédiction Continue</span>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4 h-100">
+                <h3 class="h4 mb-3">🔍 Qu'est-ce que c'est ?</h3>
+                <p>
+                    L'<strong>Arbre de Décision pour la Régression</strong> est un modèle intelligent qui prédit une valeur numérique (comme le nombre exact de <em>Calories</em>) en posant une série de questions successives sur vos données.
+                </p>
+                <p>
+                    Imaginez un organigramme inversé : on part du sommet (la racine) et on descend en répondant à des questions simples (ex: "La durée est-elle supérieure à 30 min ?"). Chaque réponse mène à une nouvelle branche, jusqu'à arriver à une "feuille" finale qui contient la prédiction moyenne.
+                </p>
+                
+                <hr>
+                
+                <h3 class="h4 mb-3">💡 L'Analogie Simple</h3>
+                <p class="text-muted">
+                    <em>C'est comme estimer le prix d'une maison :</em><br>
+                    1. La maison fait-elle plus de 100m² ? (Oui → on va à droite)<br>
+                    2. A-t-elle une piscine ? (Non → on descend à gauche)<br>
+                    3. Est-elle en centre-ville ? (Oui → <strong>Prix estimé : 300 000€</strong>).
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 h-100 bg-light">
+                <h3 class="h4 mb-3">⚙️ Caractéristiques Clés</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <strong>🎯 Non-Linéaire :</strong>
+                        <br>Contrairement à la régression linéaire, il peut capturer des relations complexes (ex: le corps brûle plus de calories après 40 min d'effort intense).
+                    </li>
+                    <li class="mb-3">
+                        <strong>🧠 Interprétable :</strong>
+                        <br>On peut visualiser exactement pourquoi le modèle a donné cette valeur en suivant le chemin dans l'arbre.
+                    </li>
+                    <li class="mb-3">
+                        <strong>⚠️ Risque de Sur-apprentissage :</strong>
+                        <br>Si l'arbre est trop profond, il apprendra les "bruits" des données par cœur. C'est pourquoi on limite souvent sa profondeur (max_depth).
+                    </li>
+                    <li class="mb-3"><strong>MSE :</strong> 26.57 Calories</li>
+                    <li class="mb-3"><strong>MAE :</strong> 3.37 Calories</li>
+                    <li class="mb-3"><strong>R2 score :</strong> 0.993</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 border rounded p-3 bg-white shadow-sm">
+        <h4 class="mb-3 text-secondary">📚 Documentation et Formules Mathématiques</h4>
+        <p>Pour aller plus loin sur le calcul de l'impureté (MSE) et la construction des nœuds :</p>
+        
+        <iframe src="{% static 'pdfs/decision_tree.pdf' %}" width="100%" height="600px" style="border:1px solid #eee;">
+            <div class="alert alert-warning">
+                Votre navigateur ne supporte pas l'affichage PDF. 
+                <a href="#" class="alert-link">Cliquez ici pour télécharger le cours.</a>
+            </div>
+        </iframe>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}

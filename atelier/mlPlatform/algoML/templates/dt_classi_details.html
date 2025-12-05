@@ -1,0 +1,44 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-primary">Arbre de Décision (Classification)</h2>
+    <span class="badge bg-primary text-white mb-4">Classification - Hiérarchique</span>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4 h-100">
+                <h3 class="h4 mb-3">🔍 Qu'est-ce que c'est ?</h3>
+                <p>
+                    Ce modèle fonctionne comme un jeu de "Qui est-ce ?". Il pose une série de questions binaires (Oui/Non) sur les caractéristiques de l'utilisateur.
+                </p>
+                <p>
+                    Par exemple : "Fume-t-il ?" -> Si Non, "Fait-il du sport ?" -> Si Oui -> <strong>Classé FIT</strong>. Il divise la population en segments de plus en plus purs jusqu'à prendre une décision finale.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 h-100 bg-light">
+                <h3 class="h4 mb-3">⚙️ Caractéristiques</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><strong>👁️ Visuel :</strong> Le modèle le plus facile à expliquer à un humain.</li>
+                    <li class="mb-3"><strong>⚡ Rapide :</strong> Prise de décision instantanée.</li>
+                    <li class="mb-3"><strong>✂️ Sensible :</strong> Un petit changement dans les données peut changer tout l'arbre.</li>
+                    <li class="mb-3"><strong>Accuracy :</strong> 73.25%</li>
+                    <li class="mb-3"><strong>Precision :</strong> 71.64%</li>
+                    <li class="mb-3"><strong>F1_score :</strong> 0.64</li>
+                    <li class="mb-3"><strong>Recall :</strong> 0.58</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 border rounded p-3 bg-white shadow-sm">
+        <h4 class="mb-3 text-secondary">📚 Documentation Théorique</h4>
+        <iframe src="{% static 'pdfs/decision_tree.pdf' %}" width="100%" height="600px" style="border:1px solid #eee;">
+            <div class="alert alert-warning">PDF non supporté. <a href="pdfs/decision_tree.pdf">Télécharger ici.</a></div>
+        </iframe>
+    </div>
+</div>
+{% include "includes/footer.html" %}

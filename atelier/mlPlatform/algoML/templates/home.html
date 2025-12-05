@@ -1,0 +1,55 @@
+{% include 'includes/header.html' %}
+
+<div class="container mt-5 flex-grow-1">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Dashboard IA & Fitness</h1>
+        <p class="lead text-muted">Explorez nos algorithmes de Machine Learning pour la santé et la performance</p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <p class="text-center text-secondary">Cette plateforme vous permet de concevoir, d'entraîner et de déployer des modèles d'apprentissage automatique en toute simplicité.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg h-100 hover-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: 15px; overflow: hidden;">
+                <div class="card-header bg-warning bg-gradient text-white py-3">
+                    <h4 class="card-title mb-0 fw-bold"><i class="bi bi-graph-up-arrow me-2"></i>     Modèles de Régression</h4>
+                </div>
+                <div class="card-body p-4">
+                    <p class="card-text text-secondary mb-4" style="font-size: 1.1rem;">Explorez nos modèles de régression pour réaliser des prédictions continues (fréquence cardiaque, calories, durée d'effort).</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="{% url 'regression' %}" class="btn btn-warning text-white fw-bold px-4 py-2 rounded-pill shadow-sm">Découvrir</a>
+                        <small class="text-muted fst-italic">Ex: régression linéaire, SVR</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg h-100 hover-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: 15px; overflow: hidden;">
+                <div class="card-header bg-secondary bg-gradient text-white py-3">
+                    <h4 class="card-title mb-1 fw-bold"><i class="bi bi-bullseye me-2"></i>      Modèles de Classification</h4>
+                </div>
+                <div class="card-body p-4">
+                    <p class="card-text text-secondary mb-4" style="font-size: 1.1rem;">Entraînez vos modèles avec des algorithmes performants pour classer activités, anomalies ou états de santé.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="{% url 'classification' %}" class="btn btn-secondary text-white fw-bold px-4 py-2 rounded-pill shadow-sm">Découvrir</a>
+                        <small class="text-muted fst-italic">Ex: Random Forest, SVM</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+        }
+    </style>
+</div>
+
+{% include 'includes/footer.html' %}

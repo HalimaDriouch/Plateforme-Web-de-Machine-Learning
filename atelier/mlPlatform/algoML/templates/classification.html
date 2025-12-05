@@ -1,0 +1,102 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Dashboard IA & Fitness</h1>
+        <p class="lead text-muted">Explorez nos algorithmes de Machine Learning pour la santé</p>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <h5 class="card-header bg-primary text-white">Régression Logistique</h5>
+                <div class="card-body">
+                    <img src="{% static 'images/regression_logistique.jpg'%}" class="card-img-top mb-3" alt="Log Reg">
+                    <p class="card-text">
+                        Classification binaire pour prédire si vous êtes <strong>FIT</strong> ou <strong>NOT FIT</strong>.
+                        Idéal pour les probabilités simples.
+                    </p>
+                    <span class="badge bg-success">Classification</span>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <a class="btn btn-outline-info w-100 mb-2" href="{% url 'regLog_details' %}">Détails</a>
+                    <a class="btn btn-primary w-100" href="{% url 'tester_modele' 'log_class' %}">Tester ce modèle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <h5 class="card-header bg-warning text-white">Arbre de Décision(Classification)</h5>
+                <div class="card-body">
+                    <img src="{% static 'images/dt.png'%}" class="card-img-top mb-3" alt="DT">
+                    <p class="card-text">
+                        Modèle simple et interprétable qui suit des règles logiques pour déduire votre état.
+                    </p>
+                    <span class="badge bg-success">Classification</span>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <a class="btn btn-outline-info w-100 mb-2" href="{% url 'dt_class_details' %}">Détails</a>
+                    <a class="btn btn-primary w-100" href="{% url 'tester_modele' 'dt_class' %}">Tester ce modèle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <h5 class="card-header bg-success text-white">Random Forest (Classif)</h5>
+                <div class="card-body">
+                    <img src="{% static 'images/rfo.png'%}" class="card-img-top mb-3" alt="RF">
+                    <p class="card-text">
+                        Un ensemble d'arbres de décision pour une précision maximale sur votre état de forme.
+                    </p>
+                    <span class="badge bg-success">Classification</span>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <a class="btn btn-outline-info w-100 mb-2" href="{% url 'rf_class_details' %}">Détails</a>
+                    <a class="btn btn-primary w-100" href="{% url 'tester_modele' 'rf_class' %}">Tester ce modèle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <h5 class="card-header bg-danger text-white">SVM (Support Vector)</h5>
+                <div class="card-body">
+                    <img src="{% static 'images/svm_classif.jpg'%}" class="card-img-top mb-3" alt="SVM">
+                    <p class="card-text">
+                        Trouve l'hyperplan optimal pour séparer les profils sportifs avec une grande rigueur mathématique.
+                    </p>
+                    <span class="badge bg-success">Classification</span>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <a class="btn btn-outline-info w-100 mb-2" href="{% url 'svm_details' %}">Détails</a>
+                    <a class="btn btn-primary w-100" href="{% url 'tester_modele' 'svm_class' %}">Tester ce modèle</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <h5 class="card-header text-white" style="background: linear-gradient(45deg, #11998e, #38ef7d);">XGBoost (Classif)</h5>
+                <div class="card-body">
+                    <img src="{% static 'images/xgboost_classification.jpg'%}" class="card-img-top mb-3" alt="XGBoost Class">
+                    <p class="card-text">
+                        L'algorithme de Boosting le plus puissant. Corrige séquentiellement les erreurs des arbres précédents.
+                    </p>
+                    <span class="badge bg-success">Classification</span>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <a class="btn btn-outline-info w-100 mb-2" href="{% url 'XGboost_class_details' %}">Détails</a>
+                    <a class="btn btn-primary w-100" href="{% url 'tester_modele' 'xgb_class' %}">Tester ce modèle</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br><br>
+{% include "includes/footer.html" %}

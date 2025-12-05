@@ -1,0 +1,67 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary mb-0">📜 Mon Historique d'activités</h2>
+        {% if historiques %}
+            <form action="{% url 'clear_history' %}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir effacer tout votre historique ?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">
+                    🗑️ Effacer l'historique
+                </button>
+            </form>
+        {% endif %}
+    </div>
+
+    {% if historiques %}
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Date</th>
+                                <th>Algorithme</th>
+                                <th>Données Saisies</th>
+                                <th>Résultat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in historiques %}
+                            <tr>
+                                <td>{{ item.date|date:"d M Y H:i" }}</td>
+                                
+                                <td>
+                                    <span class="badge bg-secondary">{{ item.algo_name }}</span>
+                                </td>
+                                
+                                <td>
+                                    <small class="text-muted">
+                                        {% for key, value in item.input_data.items %}
+                                            {% if key != 'algo' %} <strong>{{ key }}:</strong> {{ value }} | 
+                                            {% endif %}
+                                        {% endfor %}
+                                    </small>
+                                </td>
+                                
+                                <td>
+                                    <span class="fw-bold text-success">{{ item.resultat }}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            <h4>Aucun historique trouvé 🕵️‍♂️</h4>
+            <p>Commencez par tester un algorithme pour voir vos résultats ici !</p>
+            <a href="{% url 'home' %}" class="btn btn-primary mt-2">Aller aux Algorithmes</a>
+        </div>
+    {% endif %}
+</div>
+
+{% include "includes/footer.html" %}

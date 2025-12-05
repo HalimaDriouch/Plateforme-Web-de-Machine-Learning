@@ -1,0 +1,43 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-info">Random Forest (Régression)</h2>
+    <span class="badge bg-info text-white mb-4">Régression - Ensemble</span>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4 h-100">
+                <h3 class="h4 mb-3">🔍 Qu'est-ce que c'est ?</h3>
+                <p>
+                    Pour prédire une valeur exacte (Calories), le Random Forest entraîne des centaines d'arbres de décision en parallèle.
+                </p>
+                <p>
+                    Chaque arbre fait sa propre estimation des calories brûlées. Le résultat final affiché à l'utilisateur est simplement la <strong>moyenne</strong> de toutes ces estimations. Cela donne une prédiction beaucoup plus stable et précise qu'un arbre seul.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 h-100 bg-light">
+                <h3 class="h4 mb-3">⚙️ Caractéristiques</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><strong>🎯 Haute Précision :</strong> Capture les relations complexes et non-linéaires.</li>
+                    <li class="mb-3"><strong>🧱 Stable :</strong> Résiste très bien aux valeurs aberrantes.</li>
+                    <li class="mb-3"><strong>🐢 Plus lent :</strong> Demande plus de puissance de calcul que la régression linéaire.</li>
+                    <li class="mb-3"><strong>MSE :</strong> 7.18 Calories</li>
+                    <li class="mb-3"><strong>MAE :</strong> 1.72 Calories</li>
+                    <li class="mb-3"><strong>R2 score :</strong> 0.998</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 border rounded p-3 bg-white shadow-sm">
+        <h4 class="mb-3 text-secondary">📚 Documentation Théorique</h4>
+        <iframe src="{% static 'pdfs/RF.pdf' %}" width="100%" height="600px" style="border:1px solid #eee;">
+            <div class="alert alert-warning">PDF non supporté. <a href="pdfs/RF.pdf">Télécharger ici.</a></div>
+        </iframe>
+    </div>
+</div>
+{% include "includes/footer.html" %}

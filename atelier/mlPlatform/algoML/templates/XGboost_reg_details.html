@@ -1,0 +1,43 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-dark">XGBoost (Régression)</h2>
+    <span class="badge bg-dark text-white mb-4">Boosting - Prédiction Numérique</span>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4 h-100">
+                <h3 class="h4 mb-3">🔍 Qu'est-ce que c'est ?</h3>
+                <p>
+                    Appliqué à la régression (Calories), XGBoost commence par faire une prédiction grossière (la moyenne). Ensuite, il calcule l'erreur (le résidu) de cette prédiction.
+                </p>
+                <p>
+                    Le deuxième arbre essaie de <strong>prédire cette erreur</strong> pour la corriger. Le troisième corrige l'erreur du deuxième, et ainsi de suite. En additionnant toutes ces petites corrections, on obtient une prédiction finale extrêmement précise.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 h-100 bg-light">
+                <h3 class="h4 mb-3">⚙️ Caractéristiques</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><strong>🎯 Précision Extrême :</strong> Minimise efficacement la fonction de perte (RMSE).</li>
+                    <li class="mb-3"><strong>🧩 Valeurs Manquantes :</strong> Gère automatiquement les données incomplètes.</li>
+                    <li class="mb-3"><strong>🏆 Standard Industriel :</strong> Utilisé par les grandes entreprises pour les prédictions critiques.</li>
+                    <li class="mb-3"><strong>MSE :</strong> 3.07 Calories</li>
+                    <li class="mb-3"><strong>MAE :</strong> 1.22 Calories</li>
+                    <li class="mb-3"><strong>R2 score :</strong> 0.9992</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 border rounded p-3 bg-white shadow-sm">
+        <h4 class="mb-3 text-secondary">📚 Documentation Théorique</h4>
+        <iframe src="{% static 'pdfs/chapitre_xgboost.pdf' %}" width="100%" height="600px" style="border:1px solid #eee;">
+            <div class="alert alert-warning">PDF non supporté. <a href="#">Télécharger ici.</a></div>
+        </iframe>
+    </div>
+</div>
+{% include "includes/footer.html" %}
