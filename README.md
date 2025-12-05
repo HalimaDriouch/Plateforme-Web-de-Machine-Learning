@@ -5,7 +5,7 @@ Cette plateforme offre une interface intuitive, moderne et adaptée aux étudian
 
 ## **Encadrement Pédagogique**
 
-| **Élément **                | **Détails** |
+| Élément                 | **Détails** |
 |--------------------------|---------|
 | **Enseignant**               | Professeur Mohammed AMEKSA |
 | **Filière**                  | IASD |
@@ -27,48 +27,40 @@ Cette plateforme offre une interface intuitive, moderne et adaptée aux étudian
 
 Le projet consiste à développer une plateforme web qui permet :
 
-          de charger différents types de datasets (CSV)
-
-          d’explorer et de visualiser les données
-
-          d’entraîner des modèles de classification et régression
-
-          d’effectuer des prédictions intelligentes
-
-          d’afficher les performances des modèles
-
 Cette application s’inspire des cas pratiques du module, notamment avec les datasets :
 
-     - [fitness_dataset.csv](datasets/classification/fitness_dataset.csv)
-     - [calories_pred.csv](datasets/regression/calories_pred.csv)
+| Nom du fichier | Lien | Description |
+|----------------|-------|-------------|
+| fitness_dataset.csv | [Télécharger](datasets/fitness_dataset.csv) | Dataset utilisé pour prédire Fit / Non Fit |
+| calories_pred.csv | [Télécharger](datasets/calories_pred.csv) | Dataset utilisé pour prédire les calories consommées |
+
 
 ## **Fonctionnalités**
+Charger un dataset au format CSV
 
-     Charger un dataset au format CSV
+Visualisation des données
 
-     Visualisation des données
+Entraînement de plusieurs modèles de Machine Learning
 
-     Entraînement de plusieurs modèles de Machine Learning
+Prédictions individuelles et globales
 
-     Prédictions individuelles et globales
+Comparaison des performances
 
-     Comparaison des performances
+Interface simple et responsive
 
-     Interface simple et responsive
-
-     Gestion des erreurs en cas de fichier invalide
+Gestion des erreurs en cas de fichier invalide
 
 ## **Datasets utilisés**
-     **Dataset de Régression — Calcul des Calories**
+     Dataset de Régression — Calcul des Calories
 
 Contient des données permettant de prédire le nombre de calories consommées par une personne selon plusieurs paramètres.
 
-     **Dataset de Classification — Fit ou Non Fit**
+     Dataset de Classification — Fit ou Non Fit
 
 Contient plusieurs caractéristiques (calories, paramètres sportifs…) . L’objectif est de prédire si une personne est Fit ou Non Fit.
 
 
-## **Technologies utilisées*
+## Technologies utilisées
 
 **Python**
 
